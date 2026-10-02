@@ -1,0 +1,46 @@
+# ---- build / local scratch: never published -----------------------------------
+# `.scratch/` holds text extracted from the original task papers and the raw data.
+# Those are third-party materials, so they must not reach GitHub. The posts are
+# written FROM this material, in the author's own words, but the material stays local.
+.scratch/
+
+# `tools/` holds the curation scripts, kept local on purpose: the branding guard and
+# the rename table have to contain the board's name literally in order to match it, so
+# publishing them would leak exactly what they exist to remove. They also hard-code
+# absolute local paths, so they would be useless to a reader anyway.
+tools/
+
+# ---- source-collection junk (the sync script filters these, belt and braces) ----
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.vscode/
+.continue/
+
+# ---- data: a code repo should not carry it -------------------------------------
+# (the sync script already refuses these; listed so a stray copy can never be staged)
+*.csv
+*.xlsx
+*.xls
+*.db
+*.npy
+*.npz
+*.pkl
+*.model
+*.docx
+*.pptx
+
+# ...but stopword lists ARE part of the code, so they are carved back in.
+# Without these negations the blanket `*.csv` above would silently drop them.
+!code/**/stop*.csv
+!code/**/Stop*.csv
+
+# ---- submission artifacts ------------------------------------------------------
+*_results.csv
+*[Aa]ns*.csv
+~$*
+
+# ---- logs / os ----
+*.log
+.DS_Store
+Thumbs.db

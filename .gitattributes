@@ -1,0 +1,15 @@
+# Normalise line endings so the repo is byte-stable regardless of who clones it on what.
+# Without this, every checkout on Windows rewrites notebooks and scripts to CRLF and git
+# reports the whole tree as modified.
+* text=auto eol=lf
+
+# Notebooks are JSON. Keeping them LF avoids a spurious whole-file diff on every save,
+# and keeps embedded output text (which can contain \r) untouched.
+*.ipynb text eol=lf
+
+# Binary-ish things that must never be line-ending-converted.
+*.png binary
+*.jpg binary
+*.npz binary
+*.npy binary
+*.pkl binary
